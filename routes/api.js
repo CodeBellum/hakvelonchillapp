@@ -11,3 +11,5 @@ function sendJsonOKResult(res, json){
     res.json(json);
     res.end();
 }
+
+module.exports = router;
