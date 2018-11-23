@@ -16,9 +16,9 @@ var api = require('./routes/api');
 app.set('port', (process.env.PORT || 3000));
 
 var server = http.createServer(app);
-server.listen(app.get('port'));
 server.on('error', onError);
 server.on('listening', onListening);
+server.listen(app.get('port'));
 
 app.listen('port', function (){
     console.log('Server is started on port ', app.get('port'));
