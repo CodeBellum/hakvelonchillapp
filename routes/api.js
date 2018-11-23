@@ -9,6 +9,7 @@ router.get('/version', function(req, res, next) {
 router.get('/phrases', function(req, res, next) {
     var phrases = [
         {
+            id : 1,
             phrase : 'test phrase 1',
             font_size : 24,
             secondary_phrase : '',
@@ -16,6 +17,7 @@ router.get('/phrases', function(req, res, next) {
             sound_name : 'test.mp3'
         },
         {
+            id : 2,
             phrase : 'test phrase 2',
             font_size : 26,
             secondary_phrase : '',

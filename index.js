@@ -12,18 +12,17 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 var api = require('./routes/api');
+var index = require('./routes/index');
 
 app.set('port', (process.env.PORT || 3000));
 
 var server = http.createServer(app);
 server.on('error', onError);
 server.on('listening', onListening);
+
 server.listen(app.get('port'));
 
-app.listen('port', function (){
-    console.log('Server is started on port ', app.get('port'));
-});
-
+app.use('/', index);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
