@@ -3,7 +3,9 @@ const app = express();
 
 var api = require('./routes/api');
 
-app.listen(81, function (){
+app.set('port', (process.env.PORT || 3000));
+
+app.listen('port', function (){
     console.log('Server is started on port 81!');
 });
 
