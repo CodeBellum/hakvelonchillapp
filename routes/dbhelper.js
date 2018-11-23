@@ -15,21 +15,7 @@ function initialize() {
     var db = getDbInstance();
 
     var promise = new Promise(function (resolve, reject) {
-        var deleteSql = 'DROP TABLE Phrases';
-
-        db.run(deleteSql, [], function(err) {
-            if (err) {
-                resolve();
-            }
-
-            console.log('Old database deleted.');
-        });
-        resolve();
-    });
-
-    promise.then(function () {
-        return new Promise(function (resolve, reject) {
-            let sql = `CREATE TABLE IF NOT EXISTS Phrases (
+        var createSql = `CREATE TABLE IF NOT EXISTS Phrases (
  id integer PRIMARY KEY AUTOINCREMENT,
  phrase text NOT NULL,
  font_size integer NOT NULL,
@@ -39,29 +25,31 @@ function initialize() {
  min_show_time integer NOT NULL,
  max_show_time integer NOT NULL)`;
 
-            db.run(sql, [], function(err) {
-                    if (err) {
-                        reject(console.error(err.message));
-                    }
+        db.run(createSql, [], function(err) {
+            if (err) {
+                console.error(err.message);
+                reject();
+            }
 
-                    console.log('Script executed successfully.');
-                }
-            );
+            console.log('Script executed successfully.');
             resolve();
         });
     });
 
     promise.then(function () {
-        let stringData = ['test phrase 1', 'test1.mp3', 'test phrase 2', 'test3.mp3'];
-        let initializationScript = 'INSERT INTO Phrases(phrase, font_size, sound_name, min_show_time, max_show_time) VALUES (?, 24, ?, 4000, 8000), (?, 26, ?, 4000, 8000)';
-        db.run(initializationScript, stringData, function(err) {
-                if (err) {
-                    return console.error(err.message);
-                }
+        return new Promise(function (resolve, reject) {
+            let stringData = ['test phrase 1', 'test1.mp3', 'test phrase 2', 'test3.mp3'];
+            let initializationScript = 'INSERT INTO Phrases(phrase, font_size, sound_name, min_show_time, max_show_time) VALUES (?, 24, ?, 4000, 8000), (?, 26, ?, 4000, 8000)';
+            db.run(initializationScript, stringData, function(err) {
+                    if (err) {
+                        reject(console.error(err.message));
+                    }
 
-                console.log('Initialization script executed successfully.');
-            }
-        );
+                    console.log('Initialization script executed successfully.');
+                    resolve();
+                }
+            );
+        });
     });
 
     promise.then( function () {
@@ -72,6 +60,8 @@ function initialize() {
             console.log('Close the phrases connection.');
         });
     });
+
+    return promise;
 }
 
 function getPhrases() {
