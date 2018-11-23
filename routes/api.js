@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var dbhelper = require('./dbhelper');
 
 router.get('/version', function(req, res, next) {
     var version = {version : 'test'};
@@ -7,7 +8,7 @@ router.get('/version', function(req, res, next) {
 });
 
 router.get('/phrases', function(req, res, next) {
-    var phrases = [
+    /*var phrases = [
         {
             id : 1,
             phrase : 'test phrase 1',
@@ -24,9 +25,11 @@ router.get('/phrases', function(req, res, next) {
             secondary_font_size : -1,
             sound_name : 'test2.mp3'
         },
-    ];
+    ];*/
 
-    sendJsonOKResult(res, phrases);
+    dbhelper.getPhrases().then(phrases => {
+       sendJsonOKResult(res, phrases);
+    });
 });
 
 function sendJsonOKResult(res, json){

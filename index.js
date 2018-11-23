@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const path = require('path');
-
 express.static('public');
 
 // view engine setup
@@ -14,6 +13,7 @@ app.use(express.static('public'));
 var api = require('./routes/api');
 var index = require('./routes/index');
 var admin = require('./routes/admin');
+var dbhelper = require('./routes/dbhelper');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -22,6 +22,8 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 server.listen(app.get('port'));
+
+dbhelper.initialize();
 
 app.use('/', index);
 app.use('/admin', admin);
@@ -67,6 +69,7 @@ function onError(error) {
         throw error;
     }
 
+    var port = app.get('port');
     var bind = typeof port === 'string'
         ? 'Pipe ' + port
         : 'Port ' + port;
