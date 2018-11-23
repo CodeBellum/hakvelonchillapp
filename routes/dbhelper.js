@@ -19,13 +19,15 @@ function initialize() {
 
         db.run(deleteSql, [], function(err) {
             if (err) {
-                reject(console.error(err.message));
+                resolve();
             }
 
             console.log('Old database deleted.');
         });
         resolve();
-    }).then(function () {
+    });
+
+    promise.then(function () {
         return new Promise(function (resolve, reject) {
             let sql = `CREATE TABLE IF NOT EXISTS Phrases (
  id integer PRIMARY KEY AUTOINCREMENT,
@@ -60,7 +62,9 @@ function initialize() {
                 console.log('Initialization script executed successfully.');
             }
         );
-    }).then( function () {
+    });
+
+    promise.then( function () {
         db.close((err) => {
             if (err) {
                 console.error(err.message);
