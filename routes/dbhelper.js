@@ -38,8 +38,8 @@ function initialize() {
 
     promise.then(function () {
         return new Promise(function (resolve, reject) {
-            let stringData = ['test phrase 1', 'test1.mp3', 'test phrase 2', 'test3.mp3'];
-            let initializationScript = 'INSERT INTO Phrases(phrase, font_size, sound_name, min_show_time, max_show_time) VALUES (?, 24, ?, 4000, 8000), (?, 26, ?, 4000, 8000)';
+            let stringData = ['H - водород', 'test1.mp3', 'O - кислород', 'test3.mp3', 'Я - ...', 'test3.mp3'];
+            let initializationScript = 'INSERT INTO Phrases(phrase, font_size, sound_name, min_show_time, max_show_time) VALUES (?, 24, ?, 4000, 8000), (?, 26, ?, 4000, 8000), (?, 28, ?, 4000, 8000)';
             db.run(initializationScript, stringData, function(err) {
                     if (err) {
                         reject(console.error(err.message));
