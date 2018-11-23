@@ -13,6 +13,7 @@ app.use(express.static('public'));
 
 var api = require('./routes/api');
 var index = require('./routes/index');
+var admin = require('./routes/admin');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -23,6 +24,7 @@ server.on('listening', onListening);
 server.listen(app.get('port'));
 
 app.use('/', index);
+app.use('/admin', admin);
 app.use('/api', api);
 
 // catch 404 and forward to error handler

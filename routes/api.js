@@ -13,7 +13,7 @@ router.get('/phrases', function(req, res, next) {
             phrase : 'test phrase 1',
             font_size : 24,
             secondary_phrase : '',
-            secondary_font_size : '',
+            secondary_font_size : -1,
             sound_name : 'test.mp3'
         },
         {
@@ -21,7 +21,7 @@ router.get('/phrases', function(req, res, next) {
             phrase : 'test phrase 2',
             font_size : 26,
             secondary_phrase : '',
-            secondary_font_size : '',
+            secondary_font_size : -1,
             sound_name : 'test2.mp3'
         },
     ];
