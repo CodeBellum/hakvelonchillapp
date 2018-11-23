@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
-const htpp = require('http');
+const http = require('http');
+const path = require('path');
+
+express.static('public');
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+app.use(express.static('public'));
 
 var api = require('./routes/api');
 
