@@ -28,7 +28,7 @@ server.on('listening', onListening);
 
 server.listen(app.get('port'));
 
-dbhelper.initialize();
+//dbhelper.initialize();
 
 app.use('/', index);
 app.use('/admin', admin);
