@@ -32,6 +32,19 @@ router.get('/phrases', function(req, res, next) {
     });
 });
 
+router.post('/phrases', function(req, res, next) {
+    console.log(req.body);
+     dbhelper.insertRecord(req.body).then(() => {
+         sendJsonOKResult(res);
+     });
+});
+
+router.delete('/phrases', function(req, res, next) {
+    dbhelper.deletePhrases().then(() => {
+        sendJsonOKResult(res);
+    });
+});
+
 function sendJsonOKResult(res, json){
     res.status(200);
     res.json(json);

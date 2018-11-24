@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const path = require('path');
+var bodyParser = require('body-parser');
+
 express.static('public');
 
 // view engine setup
@@ -9,6 +11,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(express.static('public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 var api = require('./routes/api');
 var index = require('./routes/index');
