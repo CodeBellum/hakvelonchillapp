@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/CodeBellum/hakvelonchillapp#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "hbs": "^4.0.1",
     "sqlite3": "^4.0.4"
   }
